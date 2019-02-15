@@ -19,5 +19,5 @@ For this project I plan to build a website and present different nodes of data. 
 * February 26 - Research time period and areas to explore 
 * March 19 - Collect data
 * April 3 - Parse data and make relationships
-* April 17 - Built website
+* April 24 - Built website
 
