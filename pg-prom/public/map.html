@@ -17,7 +17,13 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
         <script src="/scripts/datamaps.world.min.js"></script>
         <script>
-            var map = new Datamap({element: document.getElementById('container')});
+            var map = new Datamap({
+                element: document.getElementById('container'),
+                projection: 'mercator',
+                fills: {
+                    defaultFill: "#bebebe"
+                }
+            });
         </script>
     </body>
 </html>
