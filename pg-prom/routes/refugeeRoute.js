@@ -44,9 +44,6 @@ const getDestinations = function() {
     return refugeeRouter;
 };
 
-const test = function(){
-    refugeeRouter.route('/')
-
 module.exports = {
     getAllData      : getAllData,
     getDestinations : getDestinations
