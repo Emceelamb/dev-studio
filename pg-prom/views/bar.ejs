@@ -26,13 +26,29 @@
 </script>
 <style>
 
+    .barGraph:hover .num {
+        display:block;
+    }
+
+    .barGraph:hover .year {
+        display:block;
+    }
+
     .bar{
-    fill: steelblue;
+        fill: steelblue;
     }
 
     .bar:hover{
-    fill: brown;
+        fill: brown;
     }
+
+    .num {
+        display: none;
+    }
+
+    .year {
+        display: none;
+     }
 
     .axis {
       font: 10px sans-serif;
@@ -49,10 +65,51 @@
 </head>
 
 <body>
+
+    <script>
+    // Adapted from http://martin.ankerl.com/2009/12/09/how-to-create-random-colors-programmatically/
+
+    var randomColor = (function(){
+      var golden_ratio_conjugate = 0.618033988749895;
+      var h = Math.random();
+
+      var hslToRgb = function (h, s, l){
+          var r, g, b;
+
+          if(s == 0){
+              r = g = b = l; // achromatic
+          }else{
+              function hue2rgb(p, q, t){
+                  if(t < 0) t += 1;
+                  if(t > 1) t -= 1;
+                  if(t < 1/6) return p + (q - p) * 6 * t;
+                  if(t < 1/2) return q;
+                  if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                  return p;
+              }
+
+              var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+              var p = 2 * l - q;
+              r = hue2rgb(p, q, h + 1/3);
+              g = hue2rgb(p, q, h);
+              b = hue2rgb(p, q, h - 1/3);
+          }
+
+          return '#'+Math.round(r * 255).toString(16)+Math.round(g * 255).toString(16)+Math.round(b * 255).toString(16);
+      };
+
+      return function(){
+        h += golden_ratio_conjugate;
+        h %= 1;
+        return hslToRgb(h, 0.5, 0.60);
+      };
+    })();
+    </script>
+
     <script>
         var graphdata = [];
 
-        var margin = { top: 20, right: 20, bottom: 100, left: 00 },
+        var margin = { top: 20, right: 20, bottom: 100, left: 100 },
             width = 1280 - margin.left - margin.right,
             height = 1020 - margin.top - margin.bottom;
 
@@ -124,19 +181,32 @@
                 .attr("transform", "rotate(-90)")
                 .style("color", "red")
 
-            svg.selectAll(".bar")
+            var g = svg.selectAll(".bar")
                 .data(data)
-            .enter().append("rect")
-                .attr("class", "bar")
-                //.attr("x", function (d) { return d.id*2; })
-                .attr("x", function (d) { return x(d.destination); })
-                .attr("y", function (d) { return y(d.refugees); })
-                //.attr("width", function(d) { return 10;})
-                .attr("width", function(d) { return x.rangeBand();})
-                .attr("height", function (d) { return height - y(d.refugees); });
+            .enter().append("g")
+                .attr("class", "barGraph")
+                g.append("rect")
+                    .attr("class", "bar")
+                    .attr("x", function (d) { return x(d.destination); })
+                    .attr("y", function (d) { return y(d.refugees); })
+                    //.attr("width", function(d) { return 10;})
+                    .attr("width", function(d) { return x.rangeBand();})
+                    .attr("height", function (d) { return height - y(d.refugees); })
+                    .style({fill: randomColor})
+                
+                g.append("text")
+                    .attr("class", "year")
+                    .attr("x", function (d) { return x(d.destination); })
+                    .attr("y", function (d) { return y(d.refugees); })
+                    .text(function(d){return d.year});
+
+                g.append("text")
+                    .attr("class", "num")
+                    .attr("x", function (d) { return x(d.destination); })
+                    .attr("y", function (d) { return y(d.refugees) +25; })
+                    .text(function(d){return d.refugees});
         };
     </script>
-    text
 </body>
 
 
