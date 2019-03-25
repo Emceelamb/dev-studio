@@ -52,9 +52,9 @@
     <script>
         var graphdata = [];
 
-        var margin = { top: 20, right: 20, bottom: 30, left: 40 },
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+        var margin = { top: 20, right: 20, bottom: 100, left: 00 },
+            width = 1280 - margin.left - margin.right,
+            height = 1020 - margin.top - margin.bottom;
 
         var x = d3.scale.ordinal()
             .rangeRoundBands([0, width], .005);
@@ -88,10 +88,11 @@
         });
 
         function draw_graph(data) {
+           /* 
             data = $(data).filter(function (i, n) {
                 return n.year === 2016;
             });
-
+*/
             for (var d = 0; d < data.length; d++) {
                 console.log(data[d].destination, data[d].refugees, data[d].year);
 
@@ -110,7 +111,7 @@
                 .attr("y", 5)
                 .attr("dy", ".71em")
                 .style("text-anchor", "end")
-                .text("Refugees accepted");
+                .text("Refugees admitted");
 
             svg.append("g")
                 .attr("class", "x axis")
@@ -122,15 +123,16 @@
                 .attr("dy", "-.55em")
                 .attr("transform", "rotate(-90)")
                 .style("color", "red")
-                .style("fill", "yellow")
 
             svg.selectAll(".bar")
                 .data(data)
             .enter().append("rect")
                 .attr("class", "bar")
-                .attr("x", function (d) { return d.id*25; })
-                .attr("width", 25)
+                //.attr("x", function (d) { return d.id*2; })
+                .attr("x", function (d) { return x(d.destination); })
                 .attr("y", function (d) { return y(d.refugees); })
+                //.attr("width", function(d) { return 10;})
+                .attr("width", function(d) { return x.rangeBand();})
                 .attr("height", function (d) { return height - y(d.refugees); });
         };
     </script>
