@@ -5,7 +5,7 @@ const express = require('express'),
 
 const PORT = process.env.PORT || 8000;
 
-server.use(express.static('public'));
+//server.use(express.static('public'));
 server.use('/scripts', express.static(__dirname + '/node_modules/datamaps/dist/'));     // node modules are private
 server.set('views', './views');
 server.set('view engine', 'ejs');
@@ -18,7 +18,10 @@ server.get('/', (req,res)=>{
 });
 
 server.get('/map', (req, res)=>{
-    res.sendFile('map.html', {root:'./public'});
+    //res.sendFile('map.html', {root:'./public'});
+    res.render('map', {
+        title: 'World Map'
+    });
 });
 
 server.get('/bar', function (req,res){

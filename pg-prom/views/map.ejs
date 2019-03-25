@@ -1,0 +1,348 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>World Map</title>
+        <style>
+            body {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container" style="position: relative; width: 100%; height:100% "></div>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+        <script src="/scripts/datamaps.world.min.js"></script>
+        <script>
+            var map = new Datamap({
+                element: document.getElementById('container'),
+                projection: 'mercator',
+                fills: {
+                    defaultFill: "#bebebe",
+                    win: '#0fa0fa'
+                },
+                data: {
+                    'ARG': { fillKey: 'win' },
+                    'AUS': { fillKey: 'win' },
+                    'AUT': { fillKey: 'win' },
+                    'BEL': { fillKey: 'win' },
+                    'BEN': { fillKey: 'win' },
+                    'BRA': { fillKey: 'win' },
+                    'BFA': { fillKey: 'win' },
+                    'KHM': { fillKey: 'win' },
+                    'CAN': { fillKey: 'win' },
+                    'CAF': { fillKey: 'win' },
+                    'CHL': { fillKey: 'win' },
+                    'CHN': { fillKey: 'win' },
+                    'COL': { fillKey: 'win' },
+                    'CIV': { fillKey: 'win' },
+                    'CYP': { fillKey: 'win' },
+                    'CZE': { fillKey: 'win' },
+                    'DNK': { fillKey: 'win' },
+                    'ECU': { fillKey: 'win' },
+                    'FIN': { fillKey: 'win' },
+                    'FRA': { fillKey: 'win' },
+                    'GAB': { fillKey: 'win' },
+                    'DEU': { fillKey: 'win' },
+                    'GRC': { fillKey: 'win' },
+                    'HKG': { fillKey: 'win' },
+                    'HUN': { fillKey: 'win' },
+                    'ISL': { fillKey: 'win' },
+                    'IND': { fillKey: 'win' },
+                    'IDN': { fillKey: 'win' },
+                    'IRL': { fillKey: 'win' },
+                    'ITA': { fillKey: 'win' },
+                    'JPN': { fillKey: 'win' },
+                    'LIE': { fillKey: 'win' },
+                    'LTU': { fillKey: 'win' },
+                    'LUX': { fillKey: 'win' },
+                    'MAC': { fillKey: 'win' },
+                    'MYS': { fillKey: 'win' },
+                    'MEX': { fillKey: 'win' },
+                    'MAR': { fillKey: 'win' },
+                    'NLD': { fillKey: 'win' },
+                    'NZL': { fillKey: 'win' },
+                    'NGA': { fillKey: 'win' },
+                    'NOR': { fillKey: 'win' },
+                    'PAN': { fillKey: 'win' },
+                    'PNG': { fillKey: 'win' },
+                    'PRY': { fillKey: 'win' },
+                    'PER': { fillKey: 'win' },
+                    'PHL': { fillKey: 'win' },
+                    'POL': { fillKey: 'win' },
+                    'KOR': { fillKey: 'win' },
+                    'ROU': { fillKey: 'win' },
+                    'RUS': { fillKey: 'win' },
+                    'SLE': { fillKey: 'win' },
+                    'SGP': { fillKey: 'win' },
+                    'SVK': { fillKey: 'win' },
+                    'ESP': { fillKey: 'win' },
+                    'CHE': { fillKey: 'win' },
+                    'THA': { fillKey: 'win' },
+                    'TLS': { fillKey: 'win' },
+                    'UKR': { fillKey: 'win' },
+                    'GBR': { fillKey: 'win' },
+                    'USA': { fillKey: 'win' },
+                    'URY': { fillKey: 'win' },
+                    'YEM': { fillKey: 'win' }
+                }
+            });
+
+            map.arc([
+              {
+                origin: 'VNM',
+                destination: 'ARG' // Argentina
+              },
+              {
+                origin: 'VNM',
+                destination: 'AUS' // Australia
+              },
+              {
+                origin: 'VNM',
+                destination: 'AUT' // Austria
+              },
+              {
+                origin: 'VNM',
+                destination: 'BEL' // Belgium
+              },
+              {
+                origin: 'VNM',
+                destination: 'BEN' // Benin
+              },
+              {
+                origin: 'VNM',
+                destination: 'BRA' // Brazil
+              },
+              {
+                origin: 'VNM',
+                destination: 'BFA' // Burkina Faso
+              },
+              {
+                origin: 'VNM',
+                destination: 'KHM' // Cambodia
+              },
+              {
+                origin: 'VNM',
+                destination: 'CAN' // Canada
+              },
+              {
+                origin: 'VNM',
+                destination: 'CAF' // Central Africa
+              },
+              {
+                origin: 'VNM',
+                destination: 'CHL' // Chile
+              },
+              {
+                origin: 'VNM',
+                destination: 'CHN' // China
+              },
+              {
+                origin: 'VNM',
+                destination: 'COL' // Colombia
+              },
+              {
+                origin: 'VNM',
+                destination: 'CIV' // Cote d'Ivoire
+              },
+              {
+                origin: 'VNM',
+                destination: 'CYP' // Cyprus
+              },
+              {
+                origin: 'VNM',
+                destination: 'CZE' // Czech
+              },
+              {
+                origin: 'VNM',
+                destination: 'DNK' // Denmark
+              },
+              {
+                origin: 'VNM',
+                destination: 'ECU' // Ecuador
+              },
+              {
+                origin: 'VNM',
+                destination: 'FIN' // Finland
+              },
+              {
+                origin: 'VNM',
+                destination: 'FRA' // France
+              },
+              {
+                origin: 'VNM',
+                destination: 'GAB' // Gabon
+              },
+              {
+                origin: 'VNM',
+                destination: 'DEU' // Germany
+              },
+              {
+                origin: 'VNM',
+                destination: 'HKG' // Hong Kong
+              },
+              {
+                origin: 'VNM',
+                destination: 'HUN' // Hungary
+              },
+              {
+                origin: 'VNM',
+                destination: 'ISL' // Iceland
+              },
+              {
+                origin: 'VNM',
+                destination: 'IND' // India
+              },
+              {
+                origin: 'VNM',
+                destination: 'IDN' // Indonesia
+              },
+              {
+                origin: 'VNM',
+                destination: 'IRL' // Ireland
+              },
+              {
+                origin: 'VNM',
+                destination: 'ITA' // Italy
+              },
+              {
+                origin: 'VNM',
+                destination: 'JPN' // Japan
+              },
+              {
+                origin: 'VNM',
+                destination: 'LIE' // Lichtenstein
+              },
+              {
+                origin: 'VNM',
+                destination: 'LTU' // Lithuania
+              },
+              {
+                origin: 'VNM',
+                destination: 'LUX' // Luxembourg
+              },
+              {
+                origin: 'VNM',
+                destination: 'MAC' // Macao
+              },
+              {
+                origin: 'VNM',
+                destination: 'MYS' // Malaysia
+              },
+              {
+                origin: 'VNM',
+                destination: 'MEX' // Mexico
+              },
+              {
+                origin: 'VNM',
+                destination: 'MAR' // Morocco
+              },
+              {
+                origin: 'VNM',
+                destination: 'NLD' // Netherlands
+              },
+              {
+                origin: 'VNM',
+                destination: 'NZL' // New Zealand
+              },
+              {
+                origin: 'VNM',
+                destination: 'NGA' // Nigeria
+              },
+              {
+                origin: 'VNM',
+                destination: 'NOR' // Norway
+              },
+              {
+                origin: 'VNM',
+                destination: 'PAN' // Panama
+              },
+              {
+                origin: 'VNM',
+                destination: 'PNG' // Papua New Guinea
+              },
+              {
+                origin: 'VNM',
+                destination: 'PRY' // Paraguay
+              },
+              {
+                origin: 'VNM',
+                destination: 'PER' // Peru
+              },
+              {
+                origin: 'VNM',
+                destination: 'PHL' // Phillipines
+              },
+              {
+                origin: 'VNM',
+                destination: 'POL' // Poland
+              },
+              {
+                origin: 'VNM',
+                destination: 'KOR' // Korea
+              },
+              {
+                origin: 'VNM',
+                destination: 'ROU' // Romania
+              },
+              {
+                origin: 'VNM',
+                destination: 'RUS' // Russian Federation
+              },
+              {
+                origin: 'VNM',
+                destination: 'SLE' // Sierra Leone
+              },
+              {
+                origin: 'VNM',
+                destination: 'SGP' // Singapore
+              },
+              {
+                origin: 'VNM',
+                destination: 'SVK' // Slovakia
+              },
+              {
+                origin: 'VNM',
+                destination: 'ESP' // Spain
+              },
+              {
+                origin: 'VNM',
+                destination: 'CHE' // Switzerland
+              },
+              {
+                origin: 'VNM',
+                destination: 'THA' // Thailand
+              },
+              {
+                origin: 'VNM',
+                destination: 'TLS' // Timo-Leste
+              },
+              {
+                origin: 'VNM',
+                destination: 'UKR' // Ukraine
+              },
+              {
+                origin: 'VNM',
+                destination: 'GBR' // UK
+              },
+              {
+                origin: 'VNM',
+                destination: 'USA' // USA
+              },
+              {
+                origin: 'VNM',
+                destination: 'URY' // Uruguay
+              },
+              {
+                origin: 'VNM',
+                destination: 'YEM' // Yemen
+              }
+            ],  {strokeWidth: 1 , arcSharpness: 1.4});
+
+
+        </script>
+    </body>
+</html>
+
