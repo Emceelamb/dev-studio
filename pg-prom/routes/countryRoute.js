@@ -33,9 +33,9 @@ const getAllData = function() {
 const getDestinations = function() {
     refugeeRouter.route('/')
         .get(function (req,res){
-            db.any("SELECT SUM(refugees), destination FROM refugees GROUP BY destination  ORDER BY destination")
+            db.any("SELECT SUM(refugees), destination FROM refugees GROUP BY destination ORDER BY destination;")
                 .then(function(data) {
-                    res.send(data);
+                    res.send('data');
                 })
                 .catch(function(error){
                     console.log(error)

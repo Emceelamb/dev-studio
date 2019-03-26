@@ -11,7 +11,7 @@ server.set('views', './views');
 server.set('view engine', 'ejs');
 
 server.use('/all', refugeeRouter.getAllData());
-server.use('/destinations', refugeeRouter.getDestinations());
+//server.use('/countries', refugeeRouter.getDestinations());
 
 server.get('/', (req,res)=>{
     res.send('Hi, guy.');
@@ -26,6 +26,12 @@ server.get('/map', (req, res)=>{
 
 server.get('/bar', function (req,res){
     res.render('bar', {
+        title: 'Bar Graph'
+    });
+});
+
+server.get('/countriesbar', function (req,res){
+    res.render('country-bar', {
         title: 'Bar Graph'
     });
 });
