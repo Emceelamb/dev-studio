@@ -30,6 +30,12 @@ server.get('/bar', function (req,res){
     });
 });
 
+server.get('/d3test', function (req,res){
+    res.render('d3test', {
+        title: 'd3 test env'
+    });
+});
+
 server.get('/countriesbar', function (req,res){
     res.render('country-bar', {
         title: 'Bar Graph'
