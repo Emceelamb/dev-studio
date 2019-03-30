@@ -33,8 +33,27 @@
                  });
                 return tmp
             }();
-            
-console.log(refData);
+
+            let countryRef = [];
+            let newTable = [];
+            refData.forEach(function (country){
+                if(countryRef.includes(country.destination) === false){
+                    countryRef.push(country.destination);
+                }
+            })
+            for(let i =0; i<countryRef.length;i++){
+                let tmp = {"country": countryRef[i], "total": 0}
+                newTable.push(tmp);
+            }
+            for(let i = 0; i < refData.length; i++){
+                for(let j =0; j < newTable.length; j++){
+                    if(refData[i].destination === newTable[j].country){
+                       newTable[j].total += refData[i].refugees
+                    }
+                }
+            }
+
+
         </script>
     </body>
 </html>

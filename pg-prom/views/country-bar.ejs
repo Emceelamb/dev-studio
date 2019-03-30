@@ -134,7 +134,7 @@
             .attr("height", height + margin.top + margin.bottom)
         .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+/*
         $.ajax({
             dataType: 'json',
             json: 'callback',
@@ -144,22 +144,23 @@
                 draw_graph(data);
             }
         });
-
+*/
         function draw_graph(data) {
            /* 
             data = $(data).filter(function (i, n) {
                 return n.year === 2016;
             });
 */
+            
             for (var d = 0; d < data.length; d++) {
-                console.log(data[d].destination, data[d].sum);
+                console.log(data[d].country, data[d].total);
 
             }
             //             console.log(data);
             //             if (err) throw err;
 
-            x.domain(data.map(function (d) { return d.destination; }));
-            y.domain([0, d3.max(data, function (d) { return d.sum; })]);
+            x.domain(data.map(function (d) { return d.country; }));
+            y.domain([0, d3.max(data, function (d) { return d.total; })]);
 
             svg.append("g")
                 .attr("class", "y axis")
@@ -188,25 +189,61 @@
                 .attr("class", "barGraph")
                 g.append("rect")
                     .attr("class", "bar")
-                    .attr("x", function (d) { return x(d.destination); })
-                    .attr("y", function (d) { return y(d.sum); })
+                    .attr("x", function (d) { return x(d.country); })
+                    .attr("y", function (d) { return y(d.total); })
                     //.attr("width", function(d) { return 10;})
                     .attr("width", function(d) { return x.rangeBand();})
-                    .attr("height", function (d) { return height - y(d.sum); })
+                    .attr("height", function (d) { return height - y(d.total); })
                     .style({fill: randomColor})
                 
                 g.append("text")
                     .attr("class", "year")
-                    .attr("x", function (d) { return x(d.destination); })
-                    .attr("y", function (d) { return y(d.sum); })
+                    .attr("x", function (d) { return x(d.country); })
+                    .attr("y", function (d) { return y(d.total); })
                     .text(function(d){return d.year});
 
                 g.append("text")
                     .attr("class", "num")
-                    .attr("x", function (d) { return x(d.destination); })
-                    .attr("y", function (d) { return y(d.sum) +25; })
-                    .text(function(d){return d.sum});
+                    .attr("x", function (d) { return x(d.country); })
+                    .attr("y", function (d) { return y(d.total) +25; })
+                    .text(function(d){return d.total});
         };
+            var refData = function getData(){
+                let tmp = null;
+                var rData = $.ajax({
+                    async: false,
+                     dataType: 'json',
+                     json: 'callback',
+                     url: 'http://localhost:8000/all',
+                     success: function (data) {
+                         console.log("success");
+                         //console.log(data);
+                         tmp = data;
+                     }
+                 });
+                return tmp
+            }();
+
+            let countryRef = [];
+            let newTable = [];
+            refData.forEach(function (country){
+                if(countryRef.includes(country.destination) === false){
+                    countryRef.push(country.destination);
+                }
+            })
+            for(let i =0; i<countryRef.length;i++){
+                let tmp = {"country": countryRef[i], "total": 0}
+                newTable.push(tmp);
+            }
+            for(let i = 0; i < refData.length; i++){
+                for(let j =0; j < newTable.length; j++){
+                    if(refData[i].destination === newTable[j].country){
+                       newTable[j].total += refData[i].refugees
+                    }
+                }
+            }
+
+                draw_graph(newTable);
 
     </script>
 </body>
