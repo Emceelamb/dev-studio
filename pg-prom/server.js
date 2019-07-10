@@ -14,7 +14,16 @@ server.use('/all', refugeeRouter.getAllData());
 //server.use('/countries', refugeeRouter.getDestinations());
 
 server.get('/', (req,res)=>{
-    res.send('Hi, guy.');
+    res.send(`
+        <a href='/map'>map</a>
+        <br/>
+        <a href='/bar'>bar over time</a>
+        <br/>
+        <a href='/d3test'>d3 testing env</a>
+        <br/>
+        <a href='/countriesbar'>agg countrie total</a>
+        <br/>
+        `);
 });
 
 server.get('/map', (req, res)=>{
